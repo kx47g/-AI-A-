@@ -1,0 +1,5 @@
+#コラボレイトリーで動作します
+#GINZA version5のインストール
+!pip install "https://github.com/megagonlabs/ginza/releases/download/v5.0.3/ginza-5.0.3.tar.gz"
+#spacy のインポート
+import spacy
