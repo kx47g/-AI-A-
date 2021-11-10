@@ -1,5 +1,21 @@
 #コラボレイトリーで動作します
 #GINZA version5のインストール
-!pip install "https://github.com/megagonlabs/ginza/releases/download/v5.0.3/ginza-5.0.3.tar.gz"
-#spacy のインポート
+!pip install sudachipy sudachidict_core
+!pip install -U ginza https://github.com/megagonlabs/ginza/releases/download/latest/ja_ginza_electra-latest-with-model.tar.gz
+
+#spacyをインポート
 import spacy
+
+#チャットの文章を入れる変数を作成
+Talk = spacy.load('ja_ginza_electra')
+
+# どうする？のチャットボックスに入力した文章を細かい単語ごとに分類して表示する。
+Doc = Talk( str( input( "どうする？" ) ) )
+for sent in Doc.sents:
+    for token in sent:
+        print(token.i, token.orth_, token.lemma_, token.pos_, token.tag_, token.dep_, token.head.i)
+    print('EOS')
+
+#※ContextualVersionConflictが発生する場合は、「ランタイムを再起動」を試してみてください。
+
+#次回以降はこの分類したデータをtensorflowとかの機械学習ライブラリに送信して、ゲーム内の処理を作っていきます。
